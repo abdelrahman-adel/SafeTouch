@@ -1,8 +1,8 @@
-package com.safetouch.services.interfaces;
+package com.safetouch.api.services.interfaces;
 
-import com.safetouch.models.Status;
-import com.safetouch.models.StatusEnum;
-import com.safetouch.models.UserInfo;
+import com.safetouch.api.models.Status;
+import com.safetouch.api.models.StatusEnum;
+import com.safetouch.api.models.UserInfo;
 
 public class UserInfoRs {
 

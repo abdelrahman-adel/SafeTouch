@@ -3,9 +3,9 @@ package com.safetouch.dal.daos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.safetouch.api.models.UserInfo;
 import com.safetouch.dal.entities.Human;
 import com.safetouch.dal.repositories.HumanRepository;
-import com.safetouch.models.UserInfo;
 
 @Repository
 public class HumanDao {

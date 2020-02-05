@@ -1,15 +1,15 @@
-package com.safetouch.services.impl;
+package com.safetouch.api.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.safetouch.api.models.LoginInfo;
+import com.safetouch.api.models.StatusEnum;
+import com.safetouch.api.models.UserInfo;
+import com.safetouch.api.services.UserManagementService;
+import com.safetouch.api.services.interfaces.UserInfoRs;
 import com.safetouch.dal.daos.HumanDao;
 import com.safetouch.dal.entities.Human;
-import com.safetouch.models.LoginInfo;
-import com.safetouch.models.StatusEnum;
-import com.safetouch.models.UserInfo;
-import com.safetouch.services.UserManagementService;
-import com.safetouch.services.interfaces.UserInfoRs;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {

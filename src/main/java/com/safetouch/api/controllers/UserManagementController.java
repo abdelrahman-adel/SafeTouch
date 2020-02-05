@@ -1,4 +1,4 @@
-package com.safetouch.controllers;
+package com.safetouch.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetouch.models.LoginInfo;
-import com.safetouch.models.UserInfo;
-import com.safetouch.services.UserManagementService;
-import com.safetouch.services.interfaces.UserInfoRs;
+import com.safetouch.api.models.LoginInfo;
+import com.safetouch.api.models.UserInfo;
+import com.safetouch.api.services.UserManagementService;
+import com.safetouch.api.services.interfaces.UserInfoRs;
 
 @RestController
 public class UserManagementController {

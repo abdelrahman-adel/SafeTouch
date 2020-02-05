@@ -1,4 +1,4 @@
-package com.safetouch.models;
+package com.safetouch.api.models;
 
 public class UserInfo {
 
