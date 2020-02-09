@@ -7,14 +7,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity(name = "human")
-public class Human {
+@Entity(name = "user")
+public class User {
 
 	@Id
-	private long id;
+	@GeneratedValue
+	private Long id;
 
 	@Column(name = "full_name")
 	private String fullName;
@@ -22,7 +24,7 @@ public class Human {
 	@Column(name = "address")
 	private String address;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "password")
@@ -34,7 +36,7 @@ public class Human {
 	@Column(name = "profile_pic")
 	private String profilePic;
 
-	@OneToMany(mappedBy = "human", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "human", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Relative> relatives;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -110,11 +112,11 @@ public class Human {
 		this.bloodType = bloodType;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

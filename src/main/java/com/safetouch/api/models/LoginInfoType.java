@@ -1,6 +1,6 @@
 package com.safetouch.api.models;
 
-public class LoginInfo {
+public class LoginInfoType {
 
 	private String email;
 	private String password;

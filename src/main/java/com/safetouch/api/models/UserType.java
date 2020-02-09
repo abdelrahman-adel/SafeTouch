@@ -1,16 +1,21 @@
 package com.safetouch.api.models;
 
-public class UserInfo {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+public class UserType {
+
+	private Long id;
 	private String fullName;
 	private String address;
 	private String email;
 	private String password;
 	private String gender;
 	private String profilePic;
-	private String deseases;
-	private String relativesNums;
-	private String birthDate;
+	private List<RelativeType> relatives;
+	private List<DiseaseType> diseases;
+	private Date birthDate;
 	private String bloodType;
 
 	public String getFullName() {
@@ -61,27 +66,11 @@ public class UserInfo {
 		this.profilePic = profilePic;
 	}
 
-	public String getDeseases() {
-		return deseases;
-	}
-
-	public void setDeseases(String deseases) {
-		this.deseases = deseases;
-	}
-
-	public String getRelativesNums() {
-		return relativesNums;
-	}
-
-	public void setRelativesNums(String relativesNums) {
-		this.relativesNums = relativesNums;
-	}
-
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -92,4 +81,27 @@ public class UserInfo {
 	public void setBloodType(String bloodType) {
 		this.bloodType = bloodType;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<DiseaseType> getDiseases() {
+		if (diseases == null) {
+			diseases = new ArrayList<>();
+		}
+		return diseases;
+	}
+
+	public List<RelativeType> getRelatives() {
+		if (relatives == null) {
+			relatives = new ArrayList<>();
+		}
+		return relatives;
+	}
+
 }

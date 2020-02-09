@@ -1,105 +1,78 @@
 package com.safetouch.api.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safetouch.api.models.LoginInfo;
+import com.safetouch.api.models.LoginInfoType;
 import com.safetouch.api.models.StatusEnum;
-import com.safetouch.api.models.UserInfo;
+import com.safetouch.api.models.UserType;
 import com.safetouch.api.services.UserManagementService;
-import com.safetouch.api.services.interfaces.UserInfoRs;
-import com.safetouch.dal.daos.HumanDao;
-import com.safetouch.dal.entities.Human;
+import com.safetouch.api.services.interfaces.response.FindRsType;
+import com.safetouch.api.services.interfaces.response.LoginRsType;
+import com.safetouch.api.services.interfaces.response.RegisterRsType;
+import com.safetouch.dal.daos.UserDao;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserManagementServiceImpl.class);
+
 	@Autowired
-	HumanDao humanDao;
+	private UserDao userDao;
 
 	@Override
-	public UserInfoRs login(LoginInfo loginInfo) {
+	public LoginRsType login(LoginInfoType loginInfo) {
+		UserType user = userDao.findByEmailAndPassword(loginInfo.getEmail(), loginInfo.getPassword());
 
 		StatusEnum status = null;
-		Human user = null;
-		try {
-			user = humanDao.findByEmailAndPassword(loginInfo.getEmail(), loginInfo.getPassword());
-
-			if (user != null) {
-				status = StatusEnum.SUCCESS;
-			} else {
-				status = StatusEnum.INVALID_CREDS;
-			}
-		} catch (Exception e) {
-			status = StatusEnum.FAILURE;
+		if (user != null) {
+			status = StatusEnum.SUCCESS;
+		} else {
+			status = StatusEnum.INVALID_CREDS;
 		}
 
-		UserInfoRs userInfoRs = new UserInfoRs();
-		buildUserInfoRs(userInfoRs, user, status);
+		LoginRsType loginRs = new LoginRsType();
+		loginRs.setStatus(status);
+		loginRs.setUser(user);
 
-		return userInfoRs;
+		return loginRs;
 	}
 
 	@Override
-	public UserInfoRs register(UserInfo userInfo) {
+	public RegisterRsType register(UserType userType) {
+		UserType createdUser = userDao.createUser(userType);
 
 		StatusEnum status = null;
-		Human user = null;
-		try {
-			user = humanDao.createUser(userInfo);
-
-			if (user != null) {
-				status = StatusEnum.SUCCESS;
-			} else {
-				status = StatusEnum.ERROR_REGISTERING_USER;
-			}
-		} catch (Exception e) {
-			status = StatusEnum.FAILURE;
+		if (createdUser != null) {
+			status = StatusEnum.SUCCESS;
+		} else {
+			status = StatusEnum.ERROR_REGISTERING_USER;
 		}
 
-		UserInfoRs userInfoRs = new UserInfoRs();
-		buildUserInfoRs(userInfoRs, user, status);
+		RegisterRsType registerRs = new RegisterRsType();
+		registerRs.setStatus(status);
+		registerRs.setUser(createdUser);
 
-		return userInfoRs;
+		return registerRs;
 	}
 
 	@Override
-	public UserInfoRs find(String email) {
+	public FindRsType find(String email) {
+		UserType userType = userDao.findByEmail(email);
 
 		StatusEnum status = null;
-		Human user = null;
-		try {
-			user = humanDao.findByEmail(email);
-
-			if (user != null) {
-				status = StatusEnum.SUCCESS;
-			} else {
-				status = StatusEnum.USER_NOT_FOUND;
-			}
-		} catch (Exception e) {
-			status = StatusEnum.FAILURE;
+		if (userType != null) {
+			status = StatusEnum.SUCCESS;
+		} else {
+			status = StatusEnum.USER_NOT_FOUND;
 		}
 
-		UserInfoRs userInfoRs = new UserInfoRs();
-		buildUserInfoRs(userInfoRs, user, status);
+		FindRsType findRs = new FindRsType();
+		findRs.setStatus(status);
+		findRs.setUser(userType);
 
-		return userInfoRs;
-	}
-
-	private void buildUserInfoRs(UserInfoRs userInfoRs, Human user, StatusEnum status) {
-		userInfoRs.setStatus(status);
-
-		UserInfo userInfo = new UserInfo();
-		userInfo.setFullName("Abdulrahman Adel");
-		userInfo.setAddress("Abdulrahman Adel");
-		userInfo.setBirthDate("Abdulrahman Adel");
-		userInfo.setBloodType("Abdulrahman Adel");
-		userInfo.setDeseases("Abdulrahman Adel");
-		userInfo.setEmail("Abdulrahman Adel");
-		userInfo.setGender("Abdulrahman Adel");
-		userInfo.setProfilePic("Abdulrahman Adel");
-		userInfo.setRelativesNums("Abdulrahman Adel");
-
-		userInfoRs.setUserInfo(userInfo);
+		return findRs;
 	}
 }

@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetouch.api.models.LoginInfo;
-import com.safetouch.api.models.UserInfo;
+import com.safetouch.api.models.LoginInfoType;
+import com.safetouch.api.models.UserType;
 import com.safetouch.api.services.UserManagementService;
-import com.safetouch.api.services.interfaces.UserInfoRs;
+import com.safetouch.api.services.interfaces.response.FindRsType;
+import com.safetouch.api.services.interfaces.response.LoginRsType;
+import com.safetouch.api.services.interfaces.response.RegisterRsType;
 
 @RestController
 public class UserManagementController {
@@ -19,17 +21,17 @@ public class UserManagementController {
 	private UserManagementService UserManagementService;
 
 	@PostMapping("/login")
-	public UserInfoRs login(@RequestBody LoginInfo loginInfo) {
+	public LoginRsType login(@RequestBody LoginInfoType loginInfo) {
 		return UserManagementService.login(loginInfo);
 	}
 
 	@PostMapping("/register")
-	public UserInfoRs register(@RequestBody UserInfo userInfo) {
+	public RegisterRsType register(@RequestBody UserType userInfo) {
 		return UserManagementService.register(userInfo);
 	}
 
 	@GetMapping("/find")
-	public UserInfoRs find(@RequestParam(name = "email", required = true) String email) {
+	public FindRsType find(@RequestParam(name = "email", required = true) String email) {
 		return UserManagementService.find(email);
 	}
 }

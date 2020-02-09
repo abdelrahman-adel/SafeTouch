@@ -2,22 +2,24 @@ package com.safetouch.dal.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "disease")
 public class Disease {
 
 	@Id
-	private long id;
+	@GeneratedValue
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

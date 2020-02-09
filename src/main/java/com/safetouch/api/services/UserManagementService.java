@@ -1,14 +1,16 @@
 package com.safetouch.api.services;
 
-import com.safetouch.api.models.LoginInfo;
-import com.safetouch.api.models.UserInfo;
-import com.safetouch.api.services.interfaces.UserInfoRs;
+import com.safetouch.api.models.LoginInfoType;
+import com.safetouch.api.models.UserType;
+import com.safetouch.api.services.interfaces.response.FindRsType;
+import com.safetouch.api.services.interfaces.response.LoginRsType;
+import com.safetouch.api.services.interfaces.response.RegisterRsType;
 
 public interface UserManagementService {
 
-	UserInfoRs login(LoginInfo loginInfo);
+	LoginRsType login(LoginInfoType loginInfo);
 
-	UserInfoRs register(UserInfo userInfo);
+	RegisterRsType register(UserType userInfo);
 
-	UserInfoRs find(String email);
+	FindRsType find(String email);
 }
