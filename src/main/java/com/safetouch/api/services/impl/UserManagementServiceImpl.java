@@ -3,12 +3,14 @@ package com.safetouch.api.services.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.safetouch.api.models.LoginInfoType;
 import com.safetouch.api.models.StatusEnum;
 import com.safetouch.api.models.UserType;
 import com.safetouch.api.services.UserManagementService;
+import com.safetouch.api.services.interfaces.response.AlertRsType;
 import com.safetouch.api.services.interfaces.response.FindRsType;
 import com.safetouch.api.services.interfaces.response.LoginRsType;
 import com.safetouch.api.services.interfaces.response.RegisterRsType;
@@ -42,9 +44,15 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 	@Override
 	public RegisterRsType register(UserType userType) {
-		UserType createdUser = userDao.createUser(userType);
-
+		UserType createdUser = null;
 		StatusEnum status = null;
+
+		try {
+			createdUser = userDao.createUser(userType);
+		} catch (DataIntegrityViolationException ex) {
+			status = StatusEnum.EMAIL_ALREADY_USED;
+		}
+
 		if (createdUser != null) {
 			status = StatusEnum.SUCCESS;
 		} else {
@@ -74,5 +82,23 @@ public class UserManagementServiceImpl implements UserManagementService {
 		findRs.setUser(userType);
 
 		return findRs;
+	}
+
+	@Override
+	public AlertRsType alert(String email) {
+		UserType userType = userDao.findByEmail(email);
+
+		StatusEnum status = null;
+		if (userType != null) {
+			status = StatusEnum.SUCCESS;
+		} else {
+			status = StatusEnum.USER_NOT_FOUND;
+		}
+
+		AlertRsType alertRs = new AlertRsType();
+		alertRs.setStatus(status);
+		alertRs.setUser(userType);
+
+		return alertRs;
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safetouch.api.models.LoginInfoType;
 import com.safetouch.api.models.UserType;
 import com.safetouch.api.services.UserManagementService;
+import com.safetouch.api.services.interfaces.response.AlertRsType;
 import com.safetouch.api.services.interfaces.response.FindRsType;
 import com.safetouch.api.services.interfaces.response.LoginRsType;
 import com.safetouch.api.services.interfaces.response.RegisterRsType;
@@ -33,5 +34,10 @@ public class UserManagementController {
 	@GetMapping("/find")
 	public FindRsType find(@RequestParam(name = "email", required = true) String email) {
 		return UserManagementService.find(email);
+	}
+
+	@GetMapping("/alert")
+	public AlertRsType alert(@RequestParam(name = "email", required = true) String email) {
+		return UserManagementService.alert(email);
 	}
 }
