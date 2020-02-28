@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.safetouch.api.models.StatusEnum;
-import com.safetouch.api.services.interfaces.response.BaseResponse;
+import com.safetouch.api.service.response.BaseResponse;
 
 @RestControllerAdvice
 public class ControllersAdvice {

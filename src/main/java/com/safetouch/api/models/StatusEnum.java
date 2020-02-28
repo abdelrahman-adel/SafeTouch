@@ -7,7 +7,9 @@ public enum StatusEnum {
 	INVALID_CREDS("01", "Invalid credentials"),
 	USER_NOT_FOUND("02", "User not found"),
 	ERROR_REGISTERING_USER("03", "Error registering user"),
-	EMAIL_ALREADY_USED("04", "Email already used");
+	EMAIL_ALREADY_USED("04", "Email already used"),
+	ERROR_REGISTERING_ADMIN("05", "Error registering admin"),
+	ADMIN_NOT_FOUND("06", "Admin not found");
 
 	private String code;
 	private String desc;

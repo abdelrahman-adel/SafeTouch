@@ -1,4 +1,4 @@
-package com.safetouch.api.services.interfaces.response;
+package com.safetouch.api.service.response;
 
 import com.safetouch.api.models.StatusType;
 import com.safetouch.api.models.StatusEnum;

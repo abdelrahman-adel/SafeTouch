@@ -1,6 +1,6 @@
-package com.safetouch.api.models;
+package com.safetouch.api.service.request;
 
-public class LoginInfoType {
+public class LoginRqType {
 
 	private String email;
 	private String password;

@@ -1,4 +1,4 @@
-package com.safetouch.api.services.impl;
+package com.safetouch.api.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.safetouch.api.models.LoginInfoType;
 import com.safetouch.api.models.StatusEnum;
 import com.safetouch.api.models.UserType;
-import com.safetouch.api.services.UserManagementService;
-import com.safetouch.api.services.interfaces.response.AlertRsType;
-import com.safetouch.api.services.interfaces.response.FindRsType;
-import com.safetouch.api.services.interfaces.response.LoginRsType;
-import com.safetouch.api.services.interfaces.response.RegisterRsType;
+import com.safetouch.api.service.UserManagementService;
+import com.safetouch.api.service.request.AlertRqType;
+import com.safetouch.api.service.request.LoginRqType;
+import com.safetouch.api.service.request.RegisterRqType;
+import com.safetouch.api.service.response.AlertRsType;
+import com.safetouch.api.service.response.FindRsType;
+import com.safetouch.api.service.response.LoginRsType;
+import com.safetouch.api.service.response.RegisterRsType;
 import com.safetouch.dal.daos.UserDao;
 
 @Service
@@ -25,7 +27,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 	private UserDao userDao;
 
 	@Override
-	public LoginRsType login(LoginInfoType loginInfo) {
+	public LoginRsType login(LoginRqType loginInfo) {
 		UserType user = userDao.findByEmailAndPassword(loginInfo.getEmail(), loginInfo.getPassword());
 
 		StatusEnum status = null;
@@ -37,18 +39,20 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 		LoginRsType loginRs = new LoginRsType();
 		loginRs.setStatus(status);
-		loginRs.setUser(user);
+		loginRs.setUserType(user);
 
 		return loginRs;
 	}
 
 	@Override
-	public RegisterRsType register(UserType userType) {
+	public RegisterRsType register(RegisterRqType registerRqType) {
 		UserType createdUser = null;
 		StatusEnum status = null;
 
 		try {
-			createdUser = userDao.createUser(userType);
+			if (registerRqType != null && registerRqType.getUserType() != null) {
+				createdUser = userDao.createUser(registerRqType.getUserType());
+			}
 		} catch (DataIntegrityViolationException ex) {
 			status = StatusEnum.EMAIL_ALREADY_USED;
 		}
@@ -61,7 +65,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 		RegisterRsType registerRs = new RegisterRsType();
 		registerRs.setStatus(status);
-		registerRs.setUser(createdUser);
+		registerRs.setUserType(createdUser);
 
 		return registerRs;
 	}
@@ -85,8 +89,8 @@ public class UserManagementServiceImpl implements UserManagementService {
 	}
 
 	@Override
-	public AlertRsType alert(String email) {
-		UserType userType = userDao.findByEmail(email);
+	public AlertRsType alert(AlertRqType alertRqType) {
+		UserType userType = userDao.findByEmail(alertRqType.getEmail());
 
 		StatusEnum status = null;
 		if (userType != null) {
