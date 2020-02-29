@@ -1,12 +1,32 @@
 package com.safetouch.api.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AdminType {
 
+	@JsonProperty("id")
 	private Long id;
+
+	@JsonProperty("entityName")
 	private String entityName;
+
+	@JsonProperty("address")
 	private String address;
+
+	@JsonProperty("email")
 	private String email;
+
+	@JsonProperty("password")
 	private String password;
+
+	@JsonProperty("notifications")
+	private List<NotificationType> notifications;
+
+	@JsonProperty("location")
+	private LocationType locationType;
 
 	public Long getId() {
 		return id;
@@ -46,5 +66,24 @@ public class AdminType {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<NotificationType> getNotifications() {
+		if (notifications == null) {
+			notifications = new ArrayList<>();
+		}
+		return notifications;
+	}
+
+	public void setNotifications(List<NotificationType> notifications) {
+		this.notifications = notifications;
+	}
+
+	public LocationType getLocationType() {
+		return locationType;
+	}
+
+	public void setLocationType(LocationType locationType) {
+		this.locationType = locationType;
 	}
 }

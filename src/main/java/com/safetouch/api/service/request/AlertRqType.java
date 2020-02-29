@@ -1,11 +1,15 @@
 package com.safetouch.api.service.request;
 
-import com.safetouch.api.models.Location;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.safetouch.api.models.LocationType;
 
 public class AlertRqType {
 
+	@JsonProperty("email")
 	private String email;
-	private Location location;
+
+	@JsonProperty("location")
+	private LocationType locationType;
 
 	public String getEmail() {
 		return email;
@@ -15,11 +19,11 @@ public class AlertRqType {
 		this.email = email;
 	}
 
-	public Location getLocation() {
-		return location;
+	public LocationType getLocationType() {
+		return locationType;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setLocationType(LocationType location) {
+		this.locationType = location;
 	}
 }

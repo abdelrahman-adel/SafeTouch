@@ -16,6 +16,7 @@ import com.safetouch.api.service.response.AlertRsType;
 import com.safetouch.api.service.response.FindRsType;
 import com.safetouch.api.service.response.LoginRsType;
 import com.safetouch.api.service.response.RegisterRsType;
+import com.safetouch.exceptions.BusinessException;
 
 @RestController()
 @RequestMapping("/user")
@@ -25,22 +26,22 @@ public class UserManagementController {
 	private UserManagementService userManagementService;
 
 	@PostMapping("/login")
-	public LoginRsType login(@RequestBody LoginRqType loginRqType) {
+	public LoginRsType login(@RequestBody LoginRqType loginRqType) throws BusinessException {
 		return userManagementService.login(loginRqType);
 	}
 
 	@PostMapping("/register")
-	public RegisterRsType register(@RequestBody RegisterRqType registerRqType) {
+	public RegisterRsType register(@RequestBody RegisterRqType registerRqType) throws BusinessException {
 		return userManagementService.register(registerRqType);
 	}
 
 	@GetMapping("/find")
-	public FindRsType find(@RequestParam(name = "email", required = true) String email) {
+	public FindRsType find(@RequestParam(name = "email", required = true) String email) throws BusinessException {
 		return userManagementService.find(email);
 	}
 
 	@GetMapping("/alert")
-	public AlertRsType alert(@RequestBody AlertRqType alertRqType) {
+	public AlertRsType alert(@RequestBody AlertRqType alertRqType) throws BusinessException {
 		return userManagementService.alert(alertRqType);
 	}
 }

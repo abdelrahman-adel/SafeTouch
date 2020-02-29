@@ -4,18 +4,41 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UserType {
 
+	@JsonProperty("id")
 	private Long id;
+
+	@JsonProperty("fullName")
 	private String fullName;
+
+	@JsonProperty("address")
 	private String address;
+
+	@JsonProperty("email")
 	private String email;
+
+	@JsonProperty("password")
 	private String password;
+
+	@JsonProperty("gender")
 	private String gender;
+
+	@JsonProperty("profilePic")
 	private String profilePic;
+
+	@JsonProperty("relatives")
 	private List<RelativeType> relatives;
+
+	@JsonProperty("diseases")
 	private List<DiseaseType> diseases;
+
+	@JsonProperty("birthDate")
 	private Date birthDate;
+
+	@JsonProperty("bloodType")
 	private String bloodType;
 
 	public String getFullName() {

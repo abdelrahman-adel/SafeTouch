@@ -1,8 +1,13 @@
 package com.safetouch.api.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class DiseaseType {
 
+	@JsonProperty("id")
 	private Long id;
+
+	@JsonProperty("name")
 	private String name;
 
 	public Long getId() {

@@ -1,16 +1,19 @@
 package com.safetouch.api.service.response;
 
-import com.safetouch.api.models.UserType;
+import java.math.BigInteger;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AlertRsType extends BaseResponse {
 
-	private UserType user;
+	@JsonProperty("caseNumber")
+	private BigInteger caseNumber;
 
-	public UserType getUser() {
-		return user;
+	public BigInteger getCaseNumber() {
+		return caseNumber;
 	}
 
-	public void setUser(UserType user) {
-		this.user = user;
+	public void setCaseNumber(BigInteger caseNumber) {
+		this.caseNumber = caseNumber;
 	}
 }

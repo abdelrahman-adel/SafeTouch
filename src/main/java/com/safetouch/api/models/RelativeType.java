@@ -1,9 +1,16 @@
 package com.safetouch.api.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class RelativeType {
 
+	@JsonProperty("id")
 	private Long id;
+
+	@JsonProperty("name")
 	private String name;
+
+	@JsonProperty("mobile")
 	private String mobile;
 
 	public Long getId() {

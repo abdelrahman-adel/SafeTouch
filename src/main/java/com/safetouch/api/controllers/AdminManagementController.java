@@ -14,6 +14,7 @@ import com.safetouch.api.service.request.RegisterRqType;
 import com.safetouch.api.service.response.CheckNotificationRsType;
 import com.safetouch.api.service.response.LoginRsType;
 import com.safetouch.api.service.response.RegisterRsType;
+import com.safetouch.exceptions.BusinessException;
 
 @RestController
 @RequestMapping("/admin")
@@ -23,17 +24,17 @@ public class AdminManagementController {
 	private AdminManagementService adminManagementService;
 
 	@GetMapping("/checknotif")
-	public CheckNotificationRsType checkNotification(@RequestParam(name = "email", required = true) String email) {
+	public CheckNotificationRsType checkNotification(@RequestParam(name = "email", required = true) String email) throws BusinessException {
 		return adminManagementService.checkNotification(email);
 	}
 
 	@PostMapping("/login")
-	public LoginRsType login(@RequestBody LoginRqType loginRqType) {
+	public LoginRsType login(@RequestBody LoginRqType loginRqType) throws BusinessException {
 		return adminManagementService.login(loginRqType);
 	}
 
 	@PostMapping("/register")
-	public RegisterRsType register(@RequestBody RegisterRqType registerRqType) {
+	public RegisterRsType register(@RequestBody RegisterRqType registerRqType) throws BusinessException {
 		return adminManagementService.register(registerRqType);
 	}
 }

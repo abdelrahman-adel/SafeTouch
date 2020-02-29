@@ -1,12 +1,15 @@
 package com.safetouch.dal.daos;
 
 import com.safetouch.api.models.UserType;
+import com.safetouch.dal.entities.User;
 
 public interface UserDao {
 
-	public UserType findByEmailAndPassword(String email, String password);
+	UserType findUserTypeByEmailAndPassword(String email, String password);
 
-	public UserType findByEmail(String email);
+	UserType findUserTypeByEmail(String email);
 
-	public UserType createUser(UserType userType);
+	User findByEmail(String email);
+
+	UserType createUser(UserType userType);
 }
