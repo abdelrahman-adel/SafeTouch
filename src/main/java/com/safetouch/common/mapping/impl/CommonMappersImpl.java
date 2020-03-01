@@ -3,16 +3,23 @@ package com.safetouch.common.mapping.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import com.safetouch.api.models.AdminType;
 import com.safetouch.api.models.DiseaseType;
 import com.safetouch.api.models.LocationType;
+import com.safetouch.api.models.NotificationType;
 import com.safetouch.api.models.RelativeType;
 import com.safetouch.api.models.UserType;
 import com.safetouch.common.mapping.CommonMappers;
+import com.safetouch.dal.entities.Admin;
 import com.safetouch.dal.entities.Disease;
 import com.safetouch.dal.entities.Location;
+import com.safetouch.dal.entities.Notification;
 import com.safetouch.dal.entities.Relative;
 import com.safetouch.dal.entities.User;
 
+@Service
 public class CommonMappersImpl implements CommonMappers {
 
 	@Override
@@ -53,7 +60,7 @@ public class CommonMappersImpl implements CommonMappers {
 	}
 
 	@Override
-	public User mapUserInfoToHuman(UserType userType) {
+	public User mapUserTypeToUser(UserType userType) {
 		if (userType != null) {
 			User user = new User();
 			user.setId(userType.getId());
@@ -102,5 +109,33 @@ public class CommonMappersImpl implements CommonMappers {
 		locationType.setLatitude(location.getLatitude());
 		locationType.setLongitude(location.getLongitude());
 		return locationType;
+	}
+
+	@Override
+	public Location mapLocationTypeToLocation(LocationType locationType) {
+		Location location = new Location();
+		location.setLatitude(locationType.getLatitude());
+		location.setLongitude(locationType.getLongitude());
+		return location;
+	}
+
+	@Override
+	public NotificationType mapNotificationToNotificationType(Notification notification, AdminType adminType, UserType userType) {
+		NotificationType notificationType = new NotificationType();
+		notificationType.setId(notification.getId());
+		notificationType.setLocationType(this.mapLocationToLocationType(notification.getLocation()));
+		notificationType.setAdminType(adminType);
+		notificationType.setUserType(userType);
+		return notificationType;
+	}
+
+	@Override
+	public Notification mapNotificationTypeToNotification(NotificationType notificationType, Admin admin, User user) {
+		Notification notification = new Notification();
+		notification.setId(notificationType.getId());
+		notification.setLocation(this.mapLocationTypeToLocation(notificationType.getLocationType()));
+		notification.setAdmin(admin);
+		notification.setUser(user);
+		return notification;
 	}
 }

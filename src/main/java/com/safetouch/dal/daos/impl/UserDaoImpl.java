@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserType createUser(UserType userType) {
-		User user = commonMappers.mapUserInfoToHuman(userType);
+		User user = commonMappers.mapUserTypeToUser(userType);
 		user = userRepository.save(user);
 		return commonMappers.mapUserToUserType(user, false);
 	}

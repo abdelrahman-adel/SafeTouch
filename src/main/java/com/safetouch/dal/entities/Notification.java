@@ -2,11 +2,14 @@ package com.safetouch.dal.entities;
 
 import java.math.BigInteger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity(name = "notification")
 public class Notification {
@@ -24,6 +27,10 @@ public class Notification {
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
+
+	@Column(name = "notified")
+	@ColumnDefault("false")
+	private boolean notified;
 
 	public BigInteger getId() {
 		return id;
@@ -55,5 +62,13 @@ public class Notification {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isNotified() {
+		return notified;
+	}
+
+	public void setNotified(boolean notified) {
+		this.notified = notified;
 	}
 }

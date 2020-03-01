@@ -1,5 +1,7 @@
 package com.safetouch.api.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +9,18 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.safetouch.api.models.AdminType;
+import com.safetouch.api.models.NotificationType;
 import com.safetouch.api.models.StatusEnum;
 import com.safetouch.api.service.AdminManagementService;
 import com.safetouch.api.service.request.LoginRqType;
+import com.safetouch.api.service.request.ReactToNotificationRqType;
 import com.safetouch.api.service.request.RegisterRqType;
 import com.safetouch.api.service.response.CheckNotificationRsType;
 import com.safetouch.api.service.response.LoginRsType;
+import com.safetouch.api.service.response.ReactToNotificationRsType;
 import com.safetouch.api.service.response.RegisterRsType;
 import com.safetouch.dal.daos.AdminDao;
+import com.safetouch.dal.daos.NotificationDao;
 import com.safetouch.exceptions.BusinessException;
 
 @Service
@@ -24,6 +30,9 @@ public class AdminManagementServiceImpl implements AdminManagementService {
 
 	@Autowired
 	private AdminDao adminDao;
+
+	@Autowired
+	private NotificationDao notificationDao;
 
 	@Override
 	public LoginRsType login(LoginRqType loginInfo) throws BusinessException {
@@ -64,17 +73,23 @@ public class AdminManagementServiceImpl implements AdminManagementService {
 	}
 
 	@Override
-	public CheckNotificationRsType checkNotification(String email) throws BusinessException {
-		AdminType admin = adminDao.findByEmail(email);
+	public CheckNotificationRsType checkNotifications(String email) throws BusinessException {
+		List<NotificationType> notifications = notificationDao.findByAdminEmail(email);
 
-		if (admin == null) {
-			throw new BusinessException(StatusEnum.ADMIN_NOT_FOUND);
+		if (notifications == null || notifications.isEmpty()) {
+			throw new BusinessException(StatusEnum.NO_NOTIFICATIONS_FOUND);
 		}
 
 		CheckNotificationRsType checkNotificationRsType = new CheckNotificationRsType();
-		checkNotificationRsType.setNotifications(admin.getNotifications());
+		checkNotificationRsType.setNotifications(notifications);
 		checkNotificationRsType.setStatus(StatusEnum.SUCCESS);
 		return checkNotificationRsType;
+	}
+
+	@Override
+	public ReactToNotificationRsType reactToNotification(ReactToNotificationRqType notificationRqType) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

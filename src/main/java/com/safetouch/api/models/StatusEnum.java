@@ -10,7 +10,8 @@ public enum StatusEnum {
 	EMAIL_ALREADY_USED("04", "Email already used"),
 	ERROR_REGISTERING_ADMIN("05", "Error registering admin"),
 	ADMIN_NOT_FOUND("06", "Admin not found"),
-	SYSTEM_HAS_NO_ADMINS("07", "System has no admins");
+	SYSTEM_HAS_NO_ADMINS("07", "System has no admins"),
+	NO_NOTIFICATIONS_FOUND("08", "No notifications found");
 
 	private String code;
 	private String desc;

@@ -1,5 +1,6 @@
 package com.safetouch.dal.daos.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -65,18 +66,12 @@ public class AdminDaoImpl implements AdminDao {
 			if (includePassword) {
 				adminType.setPassword(admin.getPassword());
 			}
-			/**
-			 * NEW
-			 */
 			adminType.setLocationType(commonMappers.mapLocationToLocationType(admin.getLocation()));
-
-			for (Notification notification : admin.getNotifications()) {
-				NotificationType notificationType = new NotificationType();
-				notificationType.setId(notification.getId());
-				notificationType.setLocationType(commonMappers.mapLocationToLocationType(notification.getLocation()));
-				notificationType.setAdminType(adminType);
-				notificationType.setUserType(commonMappers.mapUserToUserType(notification.getUser(), false));
-				adminType.getNotifications().add(notificationType);
+			if (admin.getNotifications() != null) {
+				for (Notification notification : admin.getNotifications()) {
+					NotificationType notificationType = commonMappers.mapNotificationToNotificationType(notification, adminType, commonMappers.mapUserToUserType(notification.getUser(), false));
+					adminType.getNotifications().add(notificationType);
+				}
 			}
 
 			return adminType;
@@ -93,6 +88,15 @@ public class AdminDaoImpl implements AdminDao {
 			admin.setAddress(adminType.getAddress());
 			admin.setEmail(adminType.getEmail());
 			admin.setPassword(adminType.getPassword());
+			admin.setLocation(commonMappers.mapLocationTypeToLocation(adminType.getLocationType()));
+			if (adminType.getNotifications() != null && !adminType.getNotifications().isEmpty()) {
+				admin.setNotifications(new ArrayList<>());
+				for (NotificationType notificationType : adminType.getNotifications()) {
+					Notification notification = commonMappers.mapNotificationTypeToNotification(notificationType, admin, commonMappers.mapUserTypeToUser(notificationType.getUserType()));
+					admin.getNotifications().add(notification);
+				}
+			}
+
 			return admin;
 		} else {
 			return null;
