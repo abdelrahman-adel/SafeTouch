@@ -30,7 +30,7 @@ public class Notification {
 
 	@Column(name = "notified")
 	@ColumnDefault("false")
-	private Boolean notified;
+	private Boolean notified = false;
 
 	public BigInteger getId() {
 		return id;

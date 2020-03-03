@@ -40,7 +40,7 @@ public class UserManagementController {
 		return userManagementService.find(email);
 	}
 
-	@GetMapping("/alert")
+	@PostMapping("/alert")
 	public AlertRsType alert(@RequestBody AlertRqType alertRqType) throws BusinessException {
 		return userManagementService.alert(alertRqType);
 	}

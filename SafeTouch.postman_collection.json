@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "e8ed5264-46e9-4446-bbf4-447784e35760",
+		"name": "SafeTouch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin - Registeration 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"admin\": {\n        \"entityName\": \"el7omyat\",\n        \"address\": \"mkan ma\",\n        \"email\": \"a@a.a\",\n        \"password\": \"12345\",\n        \"location\": {\n            \"longitude\": \"33.903842\",\n            \"latitude\": \"24.875344\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/admin/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"admin",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Registeration 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"admin\": {\n        \"entityName\": \"el 2asr el3eeny\",\n        \"address\": \"elta7reer\",\n        \"email\": \"b@b.b\",\n        \"password\": \"123\",\n        \"location\": {\n            \"longitude\": \"62.263842\",\n            \"latitude\": \"82.234744\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/admin/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"admin",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"a@a.a\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/admin/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - CheckNotifications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10000/admin/check-notif?email=a@a.a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"admin",
+						"check-notif"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "a@a.a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - ReactToNotification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"notifId\": \"10\",\n    \"reaction\": \"true\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/admin/react-notif",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"admin",
+						"react-notif"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Registeration 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"fullName\": \"Abdo\",\n        \"address\": \"Remaya\",\n        \"email\": \"abdo@hoda.com\",\n        \"password\": \"123456\",\n        \"gender\": \"male\",\n        \"profilePic\": \"\",\n        \"relatives\": [\n            {\n                \"name\": \"adel\",\n                \"mobile\": \"011111111\"\n            },\n            {\n                \"name\": \"eman\",\n                \"mobile\": \"022222222\"\n            }\n        ],\n        \"diseases\": [\n            {\n                \"name\": \"btats\"\n            },\n            {\n                \"name\": \"kozbra\"\n            }\n        ],\n        \"birthDate\": \"1994-08-07\",\n        \"bloodType\": \"O+\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Registeration 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"fullName\": \"Hoda\",\n        \"address\": \"Remaya\",\n        \"email\": \"hoda@abdo.com\",\n        \"password\": \"123\",\n        \"gender\": \"male\",\n        \"profilePic\": \"\",\n        \"relatives\": [\n            {\n                \"name\": \"hossam\",\n                \"mobile\": \"033333333\"\n            },\n            {\n                \"name\": \"eman\",\n                \"mobile\": \"044444444\"\n            }\n        ],\n        \"diseases\": [\n            {\n                \"name\": \"galaxy\"\n            },\n            {\n                \"name\": \"snickers\"\n            }\n        ],\n        \"birthDate\": \"1994-11-11\",\n        \"bloodType\": \"O+\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"a@a.a\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Find",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:10000/user/find?email=abdo@hoda.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"user",
+						"find"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "abdo@hoda.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - Alert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"abdo@hoda.com\",\n    \"location\": {\n        \"longitude\": \"20.212394\",\n        \"latitude\": \"30.977321\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:10000/user/alert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"user",
+						"alert"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

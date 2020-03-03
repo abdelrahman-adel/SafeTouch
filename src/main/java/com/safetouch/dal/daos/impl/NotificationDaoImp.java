@@ -63,13 +63,14 @@ public class NotificationDaoImp implements NotificationDao {
 		notification.setUser(user);
 		notification.setLocation(mapToLocation(location));
 
+		notification = notificationRepository.save(notification);
+
 		if (admin.getNotifications() == null) {
 			admin.setNotifications(new ArrayList<>());
 		}
+
 		admin.getNotifications().add(notification);
 		adminDao.updateAdmin(admin);
-
-		notification = notificationRepository.save(notification);
 		return notification;
 	}
 
