@@ -30,7 +30,7 @@ public class Notification {
 
 	@Column(name = "notified")
 	@ColumnDefault("false")
-	private boolean notified;
+	private Boolean notified;
 
 	public BigInteger getId() {
 		return id;
@@ -64,11 +64,11 @@ public class Notification {
 		this.user = user;
 	}
 
-	public boolean isNotified() {
+	public Boolean getNotified() {
 		return notified;
 	}
 
-	public void setNotified(boolean notified) {
+	public void setNotified(Boolean notified) {
 		this.notified = notified;
 	}
 }

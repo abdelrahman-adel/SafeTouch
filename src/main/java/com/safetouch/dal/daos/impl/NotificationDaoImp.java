@@ -1,7 +1,9 @@
 package com.safetouch.dal.daos.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,20 @@ public class NotificationDaoImp implements NotificationDao {
 
 	@Autowired
 	private CommonMappers commonMappers;
+
+	@Override
+	public Boolean updateNotificationState(BigInteger id, boolean notified) {
+		Optional<Notification> notifOptional = notificationRepository.findById(id);
+		if (!notifOptional.isPresent()) {
+			return null;
+		}
+
+		Notification notification = notifOptional.get();
+		notification.setNotified(notified);
+		notification = notificationRepository.save(notification);
+
+		return notification != null;
+	}
 
 	@Override
 	public Notification createNotification(User user, ILocation location) throws BusinessException {

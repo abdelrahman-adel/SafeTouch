@@ -10,7 +10,7 @@ public class ReactToNotificationRqType {
 	private BigInteger notifId;
 
 	@JsonProperty("reaction")
-	private boolean reaction;
+	private Boolean reaction;
 
 	public BigInteger getNotifId() {
 		return notifId;
@@ -20,11 +20,11 @@ public class ReactToNotificationRqType {
 		this.notifId = notifId;
 	}
 
-	public boolean isReaction() {
-		return reaction;
+	public void setReaction(Boolean reaction) {
+		this.reaction = reaction;
 	}
 
-	public void setReaction(boolean reaction) {
-		this.reaction = reaction;
+	public Boolean getReaction() {
+		return reaction;
 	}
 }

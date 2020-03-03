@@ -12,6 +12,7 @@ public class BusinessException extends Exception {
 	private StatusEnum status;
 
 	public BusinessException(StatusEnum status) {
+		super(status.getDesc());
 		this.setStatus(status);
 	}
 

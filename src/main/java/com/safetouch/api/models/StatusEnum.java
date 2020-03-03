@@ -4,6 +4,7 @@ public enum StatusEnum {
 
 	SUCCESS("00", "Success"),
 	FAILURE("99", "Unknown failure"),
+	BAD_REQUEST("98", "Bad request"),
 	INVALID_CREDS("01", "Invalid credentials"),
 	USER_NOT_FOUND("02", "User not found"),
 	ERROR_REGISTERING_USER("03", "Error registering user"),
@@ -11,7 +12,9 @@ public enum StatusEnum {
 	ERROR_REGISTERING_ADMIN("05", "Error registering admin"),
 	ADMIN_NOT_FOUND("06", "Admin not found"),
 	SYSTEM_HAS_NO_ADMINS("07", "System has no admins"),
-	NO_NOTIFICATIONS_FOUND("08", "No notifications found");
+	NO_NOTIFICATIONS_FOUND("08", "No notifications found"),
+	NOTIFICATION_UPDATE_FAILED("09", "Notification update failed"),
+	NO_SUCH_NOTIFICATION("10", "No such notification");
 
 	private String code;
 	private String desc;

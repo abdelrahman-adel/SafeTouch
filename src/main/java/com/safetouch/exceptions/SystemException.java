@@ -12,10 +12,12 @@ public class SystemException extends Exception {
 	private StatusEnum status;
 
 	public SystemException() {
+		super(StatusEnum.FAILURE.getDesc());
 		this.setStatus(StatusEnum.FAILURE);
 	}
 
 	public SystemException(StatusEnum status) {
+		super(status.getDesc());
 		this.setStatus(status);
 	}
 

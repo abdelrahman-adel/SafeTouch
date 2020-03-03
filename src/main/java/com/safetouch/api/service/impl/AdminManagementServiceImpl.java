@@ -83,13 +83,27 @@ public class AdminManagementServiceImpl implements AdminManagementService {
 		CheckNotificationRsType checkNotificationRsType = new CheckNotificationRsType();
 		checkNotificationRsType.setNotifications(notifications);
 		checkNotificationRsType.setStatus(StatusEnum.SUCCESS);
+		LOGGER.debug("{}", checkNotificationRsType);
 		return checkNotificationRsType;
 	}
 
 	@Override
 	public ReactToNotificationRsType reactToNotification(ReactToNotificationRqType notificationRqType) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		if (notificationRqType == null || notificationRqType.getNotifId() == null || notificationRqType.getReaction() == null) {
+			throw new BusinessException(StatusEnum.BAD_REQUEST);
+		}
+
+		ReactToNotificationRsType reactToNotificationRsType = new ReactToNotificationRsType();
+		Boolean updateNotificationState = notificationDao.updateNotificationState(notificationRqType.getNotifId(), notificationRqType.getReaction());
+		if (updateNotificationState == null) {
+			throw new BusinessException(StatusEnum.NO_SUCH_NOTIFICATION);
+		}
+		if (!updateNotificationState) {
+			throw new BusinessException(StatusEnum.NOTIFICATION_UPDATE_FAILED);
+		}
+
+		reactToNotificationRsType.setStatus(StatusEnum.SUCCESS);
+		return reactToNotificationRsType;
 	}
 
 }
