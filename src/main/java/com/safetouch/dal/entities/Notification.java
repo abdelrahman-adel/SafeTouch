@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ColumnDefault;
-
 @Entity(name = "notification")
 public class Notification {
 
@@ -29,8 +27,8 @@ public class Notification {
 	private User user;
 
 	@Column(name = "notified")
-	@ColumnDefault("false")
-	private Boolean notified = false;
+//	@ColumnDefault("false")
+	private Boolean notified;
 
 	public BigInteger getId() {
 		return id;

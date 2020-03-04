@@ -93,7 +93,6 @@ public class AdminManagementServiceImpl implements AdminManagementService {
 			throw new BusinessException(StatusEnum.BAD_REQUEST);
 		}
 
-		ReactToNotificationRsType reactToNotificationRsType = new ReactToNotificationRsType();
 		Boolean updateNotificationState = notificationDao.updateNotificationState(notificationRqType.getNotifId(), notificationRqType.getReaction());
 		if (updateNotificationState == null) {
 			throw new BusinessException(StatusEnum.NO_SUCH_NOTIFICATION);
@@ -102,6 +101,7 @@ public class AdminManagementServiceImpl implements AdminManagementService {
 			throw new BusinessException(StatusEnum.NOTIFICATION_UPDATE_FAILED);
 		}
 
+		ReactToNotificationRsType reactToNotificationRsType = new ReactToNotificationRsType();
 		reactToNotificationRsType.setStatus(StatusEnum.SUCCESS);
 		return reactToNotificationRsType;
 	}

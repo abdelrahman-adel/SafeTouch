@@ -13,6 +13,7 @@ import com.safetouch.api.service.request.AlertRqType;
 import com.safetouch.api.service.request.LoginRqType;
 import com.safetouch.api.service.request.RegisterRqType;
 import com.safetouch.api.service.response.AlertRsType;
+import com.safetouch.api.service.response.CheckCaseRsType;
 import com.safetouch.api.service.response.FindRsType;
 import com.safetouch.api.service.response.LoginRsType;
 import com.safetouch.api.service.response.RegisterRsType;
@@ -43,5 +44,10 @@ public class UserManagementController {
 	@PostMapping("/alert")
 	public AlertRsType alert(@RequestBody AlertRqType alertRqType) throws BusinessException {
 		return userManagementService.alert(alertRqType);
+	}
+
+	@GetMapping("/check-case")
+	public CheckCaseRsType checkCase(@RequestParam(name = "caseNumber", required = true) String caseNumber) throws BusinessException {
+		return userManagementService.checkCase(caseNumber);
 	}
 }

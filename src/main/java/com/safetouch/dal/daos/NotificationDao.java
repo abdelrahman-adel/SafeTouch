@@ -16,4 +16,6 @@ public interface NotificationDao {
 	Notification createNotification(User user, ILocation location) throws BusinessException;
 
 	List<NotificationType> findByAdminEmail(String email);
+
+	Boolean isReacted(BigInteger id);
 }

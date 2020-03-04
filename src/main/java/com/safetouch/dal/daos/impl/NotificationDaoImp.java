@@ -76,12 +76,21 @@ public class NotificationDaoImp implements NotificationDao {
 
 	@Override
 	public List<NotificationType> findByAdminEmail(String email) {
-		List<Notification> notifications = notificationRepository.findByNotifiedAndAdminEmail(false, email);
+		List<Notification> notifications = notificationRepository.findByNotifiedAndAdminEmail(null, email);
 		List<NotificationType> notificationTypes = new ArrayList<>();
 		for (Notification notification : notifications) {
 			notificationTypes.add(commonMappers.mapNotificationToNotificationType(notification, null, commonMappers.mapUserToUserType(notification.getUser(), false)));
 		}
 		return notificationTypes;
+	}
+
+	@Override
+	public Boolean isReacted(BigInteger id) {
+		Optional<Notification> optionalNotif = notificationRepository.findById(id);
+		if (!optionalNotif.isPresent()) {
+			return null;
+		}
+		return optionalNotif.get().getNotified();
 	}
 
 	private Location mapToLocation(ILocation location) {

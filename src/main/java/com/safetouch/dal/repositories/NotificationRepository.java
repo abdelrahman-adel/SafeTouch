@@ -9,6 +9,6 @@ import com.safetouch.dal.entities.Notification;
 
 public interface NotificationRepository extends JpaRepository<Notification, BigInteger> {
 
-	List<Notification> findByNotifiedAndAdminEmail(boolean notified, String email);
+	List<Notification> findByNotifiedAndAdminEmail(Boolean notified, String email);
 
 }

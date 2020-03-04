@@ -153,7 +153,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"notifId\": \"10\",\n    \"reaction\": \"true\"\n}",
+					"raw": "{\n    \"notifId\": \"7\",\n    \"reaction\": \"true\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -347,6 +347,39 @@
 					"path": [
 						"user",
 						"alert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User - CheckCase",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:10000/user/check-case?caseNumber=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10000",
+					"path": [
+						"user",
+						"check-case"
+					],
+					"query": [
+						{
+							"key": "caseNumber",
+							"value": "7"
+						}
 					]
 				}
 			},

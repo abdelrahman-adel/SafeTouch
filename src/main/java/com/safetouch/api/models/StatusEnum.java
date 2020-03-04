@@ -14,7 +14,10 @@ public enum StatusEnum {
 	SYSTEM_HAS_NO_ADMINS("07", "System has no admins"),
 	NO_NOTIFICATIONS_FOUND("08", "No notifications found"),
 	NOTIFICATION_UPDATE_FAILED("09", "Notification update failed"),
-	NO_SUCH_NOTIFICATION("10", "No such notification");
+	NO_SUCH_NOTIFICATION("10", "No such notification"),
+	NO_REACTION_YET("11", "No reaction yet"),
+	CASE_HAS_BEEN_IGNORED("12", "Case has been ignored"),
+	CASE_HAS_BEEN_ACCEPTED("13", "Case has been accepted");
 
 	private String code;
 	private String desc;

@@ -1,5 +1,7 @@
 package com.safetouch.api.service.impl;
 
+import java.math.BigInteger;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.safetouch.api.service.request.AlertRqType;
 import com.safetouch.api.service.request.LoginRqType;
 import com.safetouch.api.service.request.RegisterRqType;
 import com.safetouch.api.service.response.AlertRsType;
+import com.safetouch.api.service.response.CheckCaseRsType;
 import com.safetouch.api.service.response.FindRsType;
 import com.safetouch.api.service.response.LoginRsType;
 import com.safetouch.api.service.response.RegisterRsType;
@@ -99,5 +102,18 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 		alertRs.setStatus(StatusEnum.SUCCESS);
 		return alertRs;
+	}
+
+	@Override
+	public CheckCaseRsType checkCase(String caseNumber) throws BusinessException {
+		Boolean reacted = notificationDao.isReacted(new BigInteger(caseNumber));
+
+		CheckCaseRsType checkCaseRsType = new CheckCaseRsType();
+		if (reacted == null) {
+			checkCaseRsType.setStatus(StatusEnum.NO_REACTION_YET);
+		} else {
+			checkCaseRsType.setStatus(reacted ? StatusEnum.SUCCESS : StatusEnum.CASE_HAS_BEEN_IGNORED);
+		}
+		return checkCaseRsType;
 	}
 }
