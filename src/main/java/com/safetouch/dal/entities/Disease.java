@@ -3,13 +3,14 @@ package com.safetouch.dal.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "disease")
 public class Disease {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator = "DISEASE_SEQUENCE", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column(name = "name")
