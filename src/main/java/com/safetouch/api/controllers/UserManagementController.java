@@ -1,6 +1,7 @@
 package com.safetouch.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import com.safetouch.api.service.response.LoginRsType;
 import com.safetouch.api.service.response.RegisterRsType;
 import com.safetouch.exceptions.BusinessException;
 
+@CrossOrigin
 @RestController()
 @RequestMapping("/user")
 public class UserManagementController {
