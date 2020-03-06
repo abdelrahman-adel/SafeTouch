@@ -69,7 +69,7 @@ public class AdminDaoImpl implements AdminDao {
 			adminType.setLocationType(commonMappers.mapLocationToLocationType(admin.getLocation()));
 			if (admin.getNotifications() != null) {
 				for (Notification notification : admin.getNotifications()) {
-					NotificationType notificationType = commonMappers.mapNotificationToNotificationType(notification, adminType, commonMappers.mapUserToUserType(notification.getUser(), false));
+					NotificationType notificationType = commonMappers.mapNotificationToNotificationType(notification, null, commonMappers.mapUserToUserType(notification.getUser(), false));
 					adminType.getNotifications().add(notificationType);
 				}
 			}
