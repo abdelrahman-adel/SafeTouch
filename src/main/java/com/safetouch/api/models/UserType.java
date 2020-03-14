@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserType {
@@ -11,15 +13,18 @@ public class UserType {
 	@JsonProperty("id")
 	private Long id;
 
+	@NotBlank
 	@JsonProperty("fullName")
 	private String fullName;
 
 	@JsonProperty("address")
 	private String address;
 
+	@NotBlank
 	@JsonProperty("email")
 	private String email;
 
+	@NotBlank
 	@JsonProperty("password")
 	private String password;
 

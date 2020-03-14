@@ -1,5 +1,7 @@
 package com.safetouch.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,22 +30,24 @@ public class AdminManagementController {
 	private AdminManagementService adminManagementService;
 
 	@GetMapping("/check-notif")
-	public CheckNotificationRsType checkNotifications(@RequestParam(name = "email", required = true) String email) throws BusinessException {
+	public CheckNotificationRsType checkNotifications(@RequestParam(name = "email", required = true) String email)
+			throws BusinessException {
 		return adminManagementService.checkNotifications(email);
 	}
 
 	@PostMapping("/react-notif")
-	public ReactToNotificationRsType reactToNotification(@RequestBody ReactToNotificationRqType notificationRqType) throws BusinessException {
+	public ReactToNotificationRsType reactToNotification(
+			@Valid @RequestBody ReactToNotificationRqType notificationRqType) throws BusinessException {
 		return adminManagementService.reactToNotification(notificationRqType);
 	}
 
 	@PostMapping("/login")
-	public LoginRsType login(@RequestBody LoginRqType loginRqType) throws BusinessException {
+	public LoginRsType login(@Valid @RequestBody LoginRqType loginRqType) throws BusinessException {
 		return adminManagementService.login(loginRqType);
 	}
 
 	@PostMapping("/register")
-	public RegisterRsType register(@RequestBody RegisterRqType registerRqType) throws BusinessException {
+	public RegisterRsType register(@Valid @RequestBody RegisterRqType registerRqType) throws BusinessException {
 		return adminManagementService.register(registerRqType);
 	}
 }

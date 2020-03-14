@@ -1,4 +1,4 @@
-package com.safetouch.helpers;
+package com.safetouch.common.helpers;
 
 import com.safetouch.api.interfaces.ILocation;
 

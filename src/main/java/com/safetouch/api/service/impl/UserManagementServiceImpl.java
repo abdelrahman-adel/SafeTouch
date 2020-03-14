@@ -24,6 +24,7 @@ import com.safetouch.dal.daos.UserDao;
 import com.safetouch.dal.entities.Notification;
 import com.safetouch.dal.entities.User;
 import com.safetouch.exceptions.BusinessException;
+import com.safetouch.exceptions.SystemException;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
@@ -74,6 +75,9 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 	@Override
 	public FindRsType find(String email) throws BusinessException {
+		if (email == null || email.isEmpty()) {
+			throw new BusinessException(StatusEnum.BAD_REQUEST);
+		}
 		UserType userType = userDao.findUserTypeByEmail(email);
 
 		if (userType == null) {

@@ -15,20 +15,9 @@ public class StatusType {
 		this.desc = status.getDesc();
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setStatus(StatusEnum status) {
+		this.code = status.getCode();
+		this.desc = status.getDesc();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.safetouch.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +31,12 @@ public class UserManagementController {
 	private UserManagementService userManagementService;
 
 	@PostMapping("/login")
-	public LoginRsType login(@RequestBody LoginRqType loginRqType) throws BusinessException {
+	public LoginRsType login(@Valid @RequestBody LoginRqType loginRqType) throws BusinessException {
 		return userManagementService.login(loginRqType);
 	}
 
 	@PostMapping("/register")
-	public RegisterRsType register(@RequestBody RegisterRqType registerRqType) throws BusinessException {
+	public RegisterRsType register(@Valid @RequestBody RegisterRqType registerRqType) throws BusinessException {
 		return userManagementService.register(registerRqType);
 	}
 
@@ -44,12 +46,13 @@ public class UserManagementController {
 	}
 
 	@PostMapping("/alert")
-	public AlertRsType alert(@RequestBody AlertRqType alertRqType) throws BusinessException {
+	public AlertRsType alert(@Valid @RequestBody AlertRqType alertRqType) throws BusinessException {
 		return userManagementService.alert(alertRqType);
 	}
 
 	@GetMapping("/check-case")
-	public CheckCaseRsType checkCase(@RequestParam(name = "caseNumber", required = true) String caseNumber) throws BusinessException {
+	public CheckCaseRsType checkCase(@RequestParam(name = "caseNumber", required = true) String caseNumber)
+			throws BusinessException {
 		return userManagementService.checkCase(caseNumber);
 	}
 }

@@ -3,6 +3,9 @@ package com.safetouch.api.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AdminType {
@@ -10,6 +13,7 @@ public class AdminType {
 	@JsonProperty("id")
 	private Long id;
 
+	@NotBlank
 	@JsonProperty("entityName")
 	private String entityName;
 
@@ -19,12 +23,14 @@ public class AdminType {
 	@JsonProperty("email")
 	private String email;
 
+	@NotBlank
 	@JsonProperty("password")
 	private String password;
 
 	@JsonProperty("notifications")
 	private List<NotificationType> notifications;
 
+	@NotNull
 	@JsonProperty("location")
 	private LocationType locationType;
 

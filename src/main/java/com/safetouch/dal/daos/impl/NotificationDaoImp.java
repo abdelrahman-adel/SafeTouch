@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.safetouch.api.interfaces.ILocation;
 import com.safetouch.api.models.NotificationType;
+import com.safetouch.common.helpers.NotificationHelper;
 import com.safetouch.common.mapping.CommonMappers;
 import com.safetouch.dal.daos.AdminDao;
 import com.safetouch.dal.daos.NotificationDao;
@@ -21,7 +22,6 @@ import com.safetouch.dal.entities.Notification;
 import com.safetouch.dal.entities.User;
 import com.safetouch.dal.repositories.NotificationRepository;
 import com.safetouch.exceptions.BusinessException;
-import com.safetouch.helpers.NotificationHelper;
 
 @Repository
 public class NotificationDaoImp implements NotificationDao {

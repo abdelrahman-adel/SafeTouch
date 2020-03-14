@@ -1,12 +1,16 @@
 package com.safetouch.api.service.request;
 
+import javax.validation.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginRqType {
 
+	@NotBlank
 	@JsonProperty("email")
 	private String email;
 
+	@NotBlank
 	@JsonProperty("password")
 	private String password;
 

@@ -1,4 +1,4 @@
-package com.safetouch.helpers.impl;
+package com.safetouch.common.helpers.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.safetouch.api.interfaces.ILocation;
 import com.safetouch.api.models.StatusEnum;
+import com.safetouch.common.helpers.LocationHelper;
+import com.safetouch.common.helpers.NotificationHelper;
 import com.safetouch.dal.daos.AdminDao;
 import com.safetouch.dal.entities.Admin;
 import com.safetouch.exceptions.BusinessException;
-import com.safetouch.helpers.LocationHelper;
-import com.safetouch.helpers.NotificationHelper;
 
 @Service
 public class NotificationHelperImpl implements NotificationHelper {

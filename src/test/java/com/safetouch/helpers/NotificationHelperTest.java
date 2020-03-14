@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.safetouch.api.models.LocationType;
+import com.safetouch.common.helpers.NotificationHelper;
 import com.safetouch.dal.daos.AdminDao;
 import com.safetouch.dal.entities.Admin;
 import com.safetouch.dal.entities.Location;

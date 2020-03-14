@@ -88,12 +88,10 @@ public class AdminManagementServiceImpl implements AdminManagementService {
 	}
 
 	@Override
-	public ReactToNotificationRsType reactToNotification(ReactToNotificationRqType notificationRqType) throws BusinessException {
-		if (notificationRqType == null || notificationRqType.getNotifId() == null || notificationRqType.getReaction() == null) {
-			throw new BusinessException(StatusEnum.BAD_REQUEST);
-		}
-
-		Boolean updateNotificationState = notificationDao.updateNotificationState(notificationRqType.getNotifId(), notificationRqType.getReaction());
+	public ReactToNotificationRsType reactToNotification(ReactToNotificationRqType notificationRqType)
+			throws BusinessException {
+		Boolean updateNotificationState = notificationDao.updateNotificationState(notificationRqType.getNotifId(),
+				notificationRqType.getReaction());
 		if (updateNotificationState == null) {
 			throw new BusinessException(StatusEnum.NO_SUCH_NOTIFICATION);
 		}
